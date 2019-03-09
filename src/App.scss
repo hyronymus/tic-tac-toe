@@ -1,0 +1,54 @@
+@import 'global';
+
+*, :after, :before {
+  box-sizing: unset;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.App {
+  /*Add global styles here*/
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+  header {
+    flex:0 0  200px;
+  }
+  footer {
+    flex: 0 0 100px;
+  }
+  .body {
+    flex: 0 1 100%;
+  }
+  footer {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ul {
+      list-style-type:none;
+      li {
+        padding:10px;
+        display: inline-block;
+      }
+    }
+  }
+
+
+}
+
+.names-form {
+  .modal-content{
+    background-color: $mint;
+  }
+  font-family: 'Luckiest Guy', cursive;
+  input {
+    box-sizing: border-box;
+  }
+}

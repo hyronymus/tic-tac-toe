@@ -1,0 +1,108 @@
+/*DEFAULT THEME*/
+$green: #5CDB95;
+$mint: #8EE4AF;
+$ltMint: #c4f9d8;
+$dusk: #379683;
+$snow: #EDF5E1;
+$navy: #05386B;
+
+
+$night: #020202;
+$forest: #14430f;
+$avocado: #609c20;
+$sky: #88b3f1;
+$cotton: #f0f7ef;
+
+.theme-default {
+  .bg-md       { background-color: $green }
+  .bg-md-lt    { background-color:  $mint }
+  .bg-md-dk    { background-color:  $dusk }
+  .bg-lt       { background-color:  $snow }
+  .bg-dk         { background-color:  $navy }
+
+  .txt-md { color: $green }
+  .tst-md-lt  { color:  $mint }
+  .txt-md-dk  { color:  $dusk }
+  .txt-lt  { color:  $snow }
+  .txt-dk  { color:  $navy }
+}
+
+.theme-zardoz {
+  .bg-md {
+    background-color: $avocado
+  }
+  .bg-md-lt {
+    background-color: $sky
+  }
+  .bg-md-dk {
+    background-color: $forest
+  }
+  .bg-lt {
+    background-color: $cotton
+  }
+  .bg-dk {
+    background-color: $night
+  }
+
+  .txt-md {
+    color: $avocado
+  }
+  .tst-md-lt {
+    color: $sky
+  }
+  .txt-md-dk {
+    color: $forest
+  }
+  .txt-lt {
+    color: $cotton
+  }
+  .txt-dk {
+    color: $night
+  }
+}
+
+$themes: (
+        default: (
+                lt: $snow,
+                xtraLt: $ltMint,
+                mdLt: $mint,
+                md: $green,
+                mdDk: $dusk,
+                dk: $navy,
+                cellBg: $snow,
+
+        ),
+        zardoz: (
+                lt: $cotton,
+                xtraLt: $cotton,
+                mdLt: $sky,
+                md: $avocado,
+                mdDk: $forest,
+                dk: $night,
+                cellBg: url('./static/images/sean-O.jpg')
+        ),
+);
+
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+
+

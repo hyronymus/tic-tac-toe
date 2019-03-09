@@ -1,0 +1,45 @@
+@import '../../global';
+
+.game-stage {
+  /*background-color: $green;*/
+  height: inherit;
+  padding: 40px;
+  position: relative;
+/*  display: flex;
+  justify-content: center;*/
+
+  .game-stage__square {
+/*    height: inherit;*/
+    width: 60%;
+    min-width: 486px;
+    max-width: 536px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left:0;
+    right:0;
+    margin:0 auto;
+    &:before {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+    .game-stage__content {
+      position:  absolute;
+      width:100%;
+      height:100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .game-stage__banner {
+      font-size: 30px;
+      position:absolute;
+      top:-40px;
+      right:0;
+      left:0;
+    }
+
+  }
+}

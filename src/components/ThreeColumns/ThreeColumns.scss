@@ -1,0 +1,24 @@
+.three-columns {
+  height:100%;
+  display:flex;
+  flex-direction:row;
+
+  .column {
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    overflow: hidden;
+    &.column--left{
+      flex:0 0 200px;
+    }
+    &.column--center{
+      flex:0 1 100%;
+    }
+    &.column--right{
+      flex:0 0 200px;
+    }
+    &.column--stretch {
+      justify-content:stretch;
+    }
+  }
+}

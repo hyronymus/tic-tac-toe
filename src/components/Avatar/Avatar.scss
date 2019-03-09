@@ -1,0 +1,72 @@
+@import '../../global.scss';
+
+.avatar {
+  width: inherit;
+  height: inherit;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: swell 1s 1.9s ease-out 1 normal;
+  @include themify($themes) {
+    @keyframes bgSwell {
+      0% {
+      }
+
+      50%{
+        background: themed('lt'); /*TODO: CHANGE TO MIXIN*/
+      }
+
+      100%{
+      }
+    }
+  }
+  @keyframes swell {
+    0% {
+      transform: scale(1,1);
+    }
+
+    50%{
+      transform: scale(1.2, 1.2);
+    }
+
+    100%{
+      transform: scale(1,1);
+    }
+  }
+
+
+  .avatar__circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    @include themify($themes) {
+      background: themed('xtraLt'); /*TODO: CHANGE TO MIXIN*/
+      border: 5px solid themed('mdDk'); /*TODO: CHANGE TO MIXIN*/
+    }
+    position: relative;
+    animation: bgSwell 1s 1.9s ease-out infinite normal;
+  }
+  .avatar__icon {
+    font-size: 110px;
+    color: $navy;
+  }
+  .avatar__name {
+    color: #EDF5E1;
+    position: absolute;
+    bottom: -20px;
+    font-size: 1.4em;
+    right: 0px;
+    left: 0px;
+    height: 20px;
+    display: inline-block;
+    @include themify($themes) {
+      background: themed('dk'); /*TODO: CHANGE TO MIXIN*/
+    }
+    padding: 14px 0 10px;
+    border-radius: 5px;
+  }
+}

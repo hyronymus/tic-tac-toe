@@ -1,0 +1,65 @@
+@import '../../global';
+
+.tic-tac-toe {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid $dusk; /*todo: mixin*/
+  height: inherit;
+  width: inherit;
+  box-sizing: border-box;
+  @include themify($themes) {
+    background: themed('mdDk');
+  }
+
+  & > div {
+    flex-basis: 33.3333%;
+    display: flex;
+    & > div {
+      border: 3px solid $dusk; /*todo: mixin*/
+      flex-basis: 33.3333%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $snow;
+      & > span {
+        font-size:140px;
+        position: relative;
+        top:15px;
+      }
+      &.tic-tac-toe__cell {
+        cursor: not-allowed;
+        @include themify($themes) {
+          background: themed('cellBg')
+        }
+      }
+
+      &.tic-tac-toe__cell--highlight {
+        animation: 250ms infinite highlight;
+        @include themify($themes) {
+          @keyframes highlight { /*todo: mixin*/
+            0% {
+              color: themed('md');
+            }
+            50% {
+              color: themed('mdLt');
+            }
+            100% {
+              color: themed('md');
+            }
+          }
+        }
+        &.tic-tac-toe__cell--hover {
+          cursor: pointer;
+          transition: 1s background-color;
+          &:hover {
+            @include themify($themes){
+              background: themed('mdDk')
+            }
+
+          }
+        }
+      }
+
+    }
+  }
+}
