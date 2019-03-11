@@ -2,7 +2,7 @@
 
 This project requires uses npm or yarn to install dependencies.  After installing npm on your computer from https://www.npmjs.com/get-npm, or if using yarn, https://yarnpkg.com/lang/en/docs/install  
 
-###1. Install Dependencies
+### 1. Install Dependencies
 
 Depending on the pakcage manager you installed, in the project folder type:
 
@@ -12,7 +12,7 @@ or
 
 Installs project dependencies to node_modules folder.  This step is required to 
 
-###2. View the project.
+### 2. View the project.
 In the project directory, you can run:
 
 ### `npm start` 
@@ -25,7 +25,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-###3. Build the project (optional)
+### 3. Build the project (optional)
 
 To build a production ready version of the app, type: 
 
