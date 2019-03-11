@@ -17,13 +17,15 @@ const defaultState = {
     totals: { row: [0,0,0], col: [0,0,0], diag: [0,0] },
     currentPlayer: 1,
     winner: null,
-    isGameOver: false
+    isGameOver: false,
+    prevState: null,
 }
 
 export class TicTacToe extends React.Component {
     state = {
         ...cloneDeep(defaultState)
     }
+
     calculateTotals = (row, col, value) => {
         this.setState((state) => {
                 const {totals, turn, currentPlayer} = state
@@ -47,26 +49,44 @@ export class TicTacToe extends React.Component {
             }, this.onStateChange
         )
     }
+
     onClickCell = (row, col) => {
             this.setState((state) => {
                 const {cells, turn} = state
                 const newCells = [...cells]
+                const prevState = cloneDeep(state)
+
                 newCells[row][col] =  getPlayer(turn) === 1 ? 1 : -1
-                console.log(newCells)
-                return {cells:newCells, /*cells:newCells,*/ }
+
+                return {cells:newCells, prevState}
             },() => this.calculateTotals(row,col, this.state.cells[row][col]))
     }
+
     onStateChange = () => { this.props.updateAppState(this.state) }
+
     resetGameBoard = () => this.setState({...cloneDeep(defaultState)})
+
+    componentWillMount() {
+        this.setState({theme : this.props.gameState.theme})
+    }
+
     componentWillReceiveProps(newProps) {
         const {gameState} = newProps
-        console.log('received props', gameState, this.state)
+
+        if(gameState.undo){
+            this.setState(state => {
+                return {...cloneDeep(state.prevState)}
+            })
+        }
+        if(gameState.theme !== this.state.theme) {
+            this.setState({theme : gameState.theme})
+        }
         if(gameState.turn === 1 && this.state.turn !== 1) {
             this.resetGameBoard()
         }
     }
-    render(){
-        const {cells, totals, winner} = this.state
+    render() {
+        const {cells, totals, winner, theme} = this.state
 
         return (
             <div className='tic-tac-toe'>
@@ -74,11 +94,10 @@ export class TicTacToe extends React.Component {
                     return(
                         <div key={`row-${row}`}>
                             {cellRow.map( (value, col)=> {
-                                return (<Cell key={`cell-${row}-${col}`} winner={winner} highlight={isWinnerCell(row,col, totals)} value={value} row={row} col={col} onClick={this.onClickCell}/>)
+                                return (<Cell key={`cell-${row}-${col}`} theme={theme} winner={winner} highlight={isWinnerCell(row,col, totals)} value={value} row={row} col={col} onClick={this.onClickCell}/>)
                             })}
                         </div>
                     )
-
                 })}
             </div>
         )
@@ -86,11 +105,24 @@ export class TicTacToe extends React.Component {
 }
 
 const Cell = (props) => {
-    const {winner, highlight, row, col, value, onClick} = props
-    const displayValue = {'-1':'X','1':'O'}
+    const {theme, winner, highlight, row, col, value, onClick} = props
+    const gamePiece = {
+        Default: {
+            '-1': <span>X</span>, '1': <span>O</span>
+        },
+        Zardoz: {
+            '-1': <div style={{width: '75%', height: '75%'}}>
+                <svg width="100%" height="100%">
+                    <rect width="100%" height="100%"
+                          style={{fill: '#747b4e', strokeWidth: '66.6%', stroke: '#173e22'}}/>
+                </svg>
+            </div>,
+            '1': <img alt='Sean' style={{width: '75%', height: '75%'}} src={sean}/>
+        }
+    }
     const maybeHighlight = highlight ? ' tic-tac-toe__cell--highlight' : ''
-    const maybeHover = (!winner && !displayValue[value]) ? ' tic-tac-toe__cell--hover' : ''
-    const gamePiece = (displayValue[value]) ? ' tic-tac-toe__cell--hover' : ''
-    return (<div className={'tic-tac-toe__cell bg-md-dk' + maybeHighlight + maybeHover} onClick={() => !winner && !displayValue[value] && onClick(row,col, value)}><span>{displayValue[value] || ''}</span></div>
+    const maybeHover = (!winner && !value) ? ' tic-tac-toe__cell--hover' : ''
+
+    return (<div className={'tic-tac-toe__cell bg-md-dk' + maybeHighlight + maybeHover} onClick={() => !winner && !gamePiece[theme][value] && onClick(row,col, value)}>{gamePiece[theme] ? gamePiece[theme][value] : ''}</div>
     )
 }

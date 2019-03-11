@@ -5,9 +5,9 @@ import {TicTacToe} from "../TicTacToe/TicTacToe";
 const bannerText = (gameState) => {
     const {stats, currentPlayer, winner} = gameState
     const messages = {
-        pre: {text: "Click on a square to begin!"},
+        pre: {text: `${stats.players[currentPlayer-1].name} click on any square!`},
         during: {text: `${stats.players[currentPlayer-1].name}, you're up!`},
-        post: {text: winner ? `${stats.players[winner-1].name} wins!` : 'Cat\s Game :/'}
+        post: {text: winner ? `${stats.players[winner-1].name} wins!` : 'Cat\'s Game :/'}
     }
     return messages[gameState.currentStage]
 }

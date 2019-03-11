@@ -3,7 +3,9 @@
 .tic-tac-toe {
   display: flex;
   flex-direction: column;
-  border: 3px solid $dusk; /*todo: mixin*/
+  @include themify($themes) {
+    border: 3px solid themed('mdDk'); /*todo: mixin*/
+  }
   height: inherit;
   width: inherit;
   box-sizing: border-box;
@@ -15,18 +17,21 @@
     flex-basis: 33.3333%;
     display: flex;
     & > div {
-      border: 3px solid $dusk; /*todo: mixin*/
+      @include themify($themes) {
+        border: 3px solid themed('mdDk'); /*todo: mixin*/
+      }
       flex-basis: 33.3333%;
       display: flex;
       justify-content: center;
       align-items: center;
       background: $snow;
       & > span {
-        font-size:140px;
+        font-size:8em;
         position: relative;
         top:15px;
       }
       &.tic-tac-toe__cell {
+        overflow:hidden;
         cursor: not-allowed;
         @include themify($themes) {
           background: themed('cellBg')
@@ -35,10 +40,14 @@
 
       &.tic-tac-toe__cell--highlight {
         animation: 250ms infinite highlight;
-        @include themify($themes) {
-          @keyframes highlight { /*todo: mixin*/
+        & > img, & > div > svg {
+          animation: 500ms infinite sizeSwell;
+        }
+        @include themify($themes) { /*Default Only*/
+          @keyframes highlight {
             0% {
               color: themed('md');
+
             }
             50% {
               color: themed('mdLt');
@@ -48,18 +57,29 @@
             }
           }
         }
-        &.tic-tac-toe__cell--hover {
-          cursor: pointer;
-          transition: 1s background-color;
-          &:hover {
-            @include themify($themes){
-              background: themed('mdDk')
-            }
+        @keyframes sizeSwell { /*Zarzod Only*/
+          0% {
+            transform: scale(1)
 
+          }
+          50% {
+            transform: scale(1.4)
+          }
+          100% {
+            transform: scale(1)
           }
         }
       }
+      &.tic-tac-toe__cell--hover {
+        cursor: pointer;
+        transition: 1s background-color;
+        &:hover {
+          @include themify($themes){
+            background: themed('mdDk')
+          }
 
+        }
+      }
     }
   }
 }

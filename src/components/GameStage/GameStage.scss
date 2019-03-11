@@ -5,14 +5,14 @@
   height: inherit;
   padding: 40px;
   position: relative;
+  flex: 0 0 100%;
+  box-sizing: border-box;
 /*  display: flex;
   justify-content: center;*/
 
   .game-stage__square {
 /*    height: inherit;*/
-    width: 60%;
-    min-width: 486px;
-    max-width: 536px;
+    width: 486px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -34,12 +34,34 @@
       bottom: 0;
     }
     .game-stage__banner {
-      font-size: 30px;
+      font-size: 2em;
       position:absolute;
       top:-40px;
       right:0;
       left:0;
     }
 
+  }
+  @media(max-width:992px){
+    .game-stage__square {
+      width: 80%;
+      min-width:286px;
+      max-width:486px;
+      .game-stage__banner {
+        font-size: 1.6em;
+      }
+    }
+
+  }
+  @media(max-width:500px){
+    .game-stage__square {
+      width:80%
+    }
+  }
+}
+
+@media(max-width:500px){
+  .game-stage {
+    padding:10px;
   }
 }

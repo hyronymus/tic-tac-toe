@@ -7,10 +7,10 @@ $snow: #EDF5E1;
 $navy: #05386B;
 
 
-$night: #020202;
-$forest: #14430f;
-$avocado: #609c20;
-$sky: #88b3f1;
+$night: #222;
+$night2: #020202;
+$salmon: #e6785c;
+$sky: #c5d9f7;
 $cotton: #f0f7ef;
 
 .theme-default {
@@ -29,13 +29,13 @@ $cotton: #f0f7ef;
 
 .theme-zardoz {
   .bg-md {
-    background-color: $avocado
-  }
-  .bg-md-lt {
     background-color: $sky
   }
+  .bg-md-lt {
+    background-color: $salmon
+  }
   .bg-md-dk {
-    background-color: $forest
+    background-color: $night2
   }
   .bg-lt {
     background-color: $cotton
@@ -45,13 +45,13 @@ $cotton: #f0f7ef;
   }
 
   .txt-md {
-    color: $avocado
-  }
-  .tst-md-lt {
     color: $sky
   }
+  .tst-md-lt {
+    color: $salmon
+  }
   .txt-md-dk {
-    color: $forest
+    color: $night2
   }
   .txt-lt {
     color: $cotton
@@ -75,11 +75,11 @@ $themes: (
         zardoz: (
                 lt: $cotton,
                 xtraLt: $cotton,
-                mdLt: $sky,
-                md: $avocado,
-                mdDk: $forest,
+                mdLt: $salmon,
+                md: $sky,
+                mdDk: $night2,
                 dk: $night,
-                cellBg: url('./static/images/sean-O.jpg')
+                cellBg: $cotton
         ),
 );
 

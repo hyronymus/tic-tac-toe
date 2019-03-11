@@ -8,21 +8,13 @@
   align-items: center;
   .logo {
     display: inline-block;
-    font-size: 80px;
+    font-size: 6em;
+    position:relative;
+    top:.15em;
     @include themify($themes){
       color: themed('lt');
     }
     border-radius: 30%;
-    /*border: solid 1px $snow;*/
-    /*background-color: $mint*/
-    /*TODO: PREVENT FULL WIDTH, PROBABLY FLEX'S FAULT*/
-
-    /*    animation-name: spin1, spin2, spin3, spin4!*, spin5, spin6, spin6, spin8;*!;
-        animation-duration: 1000ms, 900ms, 800ms, 700ms, 600ms, 500ms, 400ms, 300ms;
-        animation-iteration-count: 1, 1, 1, 1;
-        animation-timing-function: ease-in;
-        animation-direction: alternate;*/
-
     animation: spin1 3s ease-in 1 normal;
 
     @keyframes spin1 {
@@ -93,6 +85,11 @@
         transform: scale(1, 1)
       }
 
+    }
+  }
+  @media(max-width:650px){
+    .logo {
+      font-size:4em;
     }
   }
 }

@@ -7,7 +7,7 @@ export const Avatar = (props) => {
         <div className="avatar">
             <div className="avatar__circle">
                 <i className="avatar__icon fas fa-user"></i>
-                <div className="avatar__name">{name || 'Player'}</div>
+                <div className="avatar__name">{name}</div>
             </div>
         </div>
     )

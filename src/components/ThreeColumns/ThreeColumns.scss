@@ -4,14 +4,16 @@
   flex-direction:row;
 
   .column {
-    height:100%;
+    height:auto;
     display:flex;
     flex-direction:column;
     overflow: hidden;
+
     &.column--left{
       flex:0 0 200px;
     }
     &.column--center{
+      justify-content: center;
       flex:0 1 100%;
     }
     &.column--right{
@@ -20,5 +22,19 @@
     &.column--stretch {
       justify-content:stretch;
     }
+    @media(max-width:992px){
+      &.column--left{
+        flex:0 0 100px;
+      }
+      &.column--center{
+        flex:0 1 100%;
+      }
+      &.column--right{
+        flex:0 0 100px;
+      }
+    }
+
   }
+
 }
+
